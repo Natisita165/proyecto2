@@ -1,0 +1,412 @@
+<style>
+    :host {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 14px;
+      color: #333;
+      background-color: rgb(255, 127, 165);
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 8px 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .spacer {
+      flex: 1;
+    }
+
+    .toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      background-color: #92fae3;
+      color: white;
+      font-weight: 600;
+    }
+
+    .toolbar img {
+      margin: 0 16px;
+    }
+
+    .toolbar #twitter-logo {
+      height: 40px;
+      margin: 0 8px;
+    }
+
+    .toolbar #youtube-logo {
+      height: 40px;
+      margin: 0 16px;
+    }
+
+    .toolbar #twitter-logo:hover,
+    .toolbar #youtube-logo:hover {
+      opacity: 0.8;
+    }
+
+    .content {
+      display: flex;
+      margin: 82px auto 32px;
+      padding: 0 16px;
+      max-width: 960px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    svg.material-icons {
+      height: 24px;
+      width: auto;
+    }
+
+    svg.material-icons:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    .card svg.material-icons path {
+      fill: #888;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .card {
+      all: unset;
+      border-radius: 4px;
+      border: 1px solid #eee;
+      background-color: #fafafa;
+      height: 340px;
+      width: 350px;
+      margin: 0 8px 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+      line-height: 24px;
+    }
+
+
+    .card2 {
+      all: unset;
+      border-radius: 4px;
+      border: 1px solid #eee;
+      background-color: #fafafa;
+      height: 340px;
+      width: 350px;
+      margin: 0 8px 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+      line-height: 24px;
+    }
+    .card3 {
+      all: unset;
+      border-radius: 4px;
+      border: 1px solid #eee;
+      background-color: #fafafa;
+      height: 430px;
+      width: 400px;
+      margin: 0 8px 16px;
+      padding: 10px;
+      display: flex;
+      line-height: 24px;
+    }
+
+    .card-container .card:not(.highlight-card):hover .material-icons path {
+      fill: rgb(105, 103, 103);
+    }
+
+
+    svg#rocket {
+      width: 80px;
+      position: absolute;
+      left: -10px;
+      top: -24px;
+    }
+
+    svg#rocket-smoke {
+      height: calc(100vh - 95px);
+      position: absolute;
+      top: 10px;
+      right: 180px;
+      z-index: -10;
+    }
+
+    a,
+    a:visited,
+    a:hover {
+      color: #1976d2;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #125699;
+    }
+
+    .terminal {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 6px;
+      padding-top: 45px;
+      margin-top: 8px;
+      overflow: hidden;
+      background-color: rgb(15, 15, 16);
+    }
+
+    .terminal::before {
+      content: "\2022 \2022 \2022";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: rgb(58, 58, 58);
+      color: #c2c3c4;
+      width: 100%;
+      font-size: 2rem;
+      line-height: 0;
+      padding: 14px 0;
+      text-indent: 4px;
+    }
+
+    .terminal pre {
+      font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+      color: white;
+      padding: 0 1rem 1rem;
+      margin: 0;
+    }
+
+    .circle-link {
+      height: 40px;
+      width: 40px;
+      border-radius: 40px;
+      margin: 8px;
+      background-color: white;
+      border: 1px solid #eeeeee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: 1s ease-out;
+    }
+
+    .circle-link:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      line-height: 20px;
+    }
+
+    footer a {
+      display: flex;
+      align-items: center;
+    }
+
+    .github-star-badge {
+      color: #24292e;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      padding: 3px 10px;
+      border: 1px solid rgba(27,31,35,.2);
+      border-radius: 3px;
+      background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+      margin-left: 4px;
+      font-weight: 600;
+    }
+
+    .github-star-badge:hover {
+      background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
+      border-color: rgba(27,31,35,.35);
+      background-position: -.5em;
+    }
+
+    .github-star-badge .material-icons {
+      height: 16px;
+      width: 16px;
+      margin-right: 4px;
+    }
+
+    svg#clouds {
+      position: fixed;
+      bottom: -160px;
+      left: -230px;
+      z-index: -10;
+      width: 1920px;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 767px) {
+      .card-container > *:not(.circle-link) ,
+      .terminal {
+        width: 100%;
+      }
+
+      .card:not(.highlight-card) {
+        height: 16px;
+        margin: 8px 0;
+      }
+
+      .card.highlight-card span {
+        margin-left: 72px;
+      }
+
+      svg#rocket-smoke {
+        right: 120px;
+        transform: rotate(-5deg);
+      }
+    }
+
+    @media screen and (max-width: 575px) {
+      svg#rocket-smoke {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    /* Responsive Styles */
+
+  </style>
+
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">
+    <img
+      width="30"
+      alt="Telefono Logo"
+      src="https://i.pinimg.com/550x/d4/6f/c9/d46fc93aac7994b6c8c199e8c312a3e7.jpg"
+    />
+    <span>TECNO-CEL by Natalia Méndez Herrera</span>
+    <a [routerLink]=”[‘pagina’]”>Home</a>
+    <a [routerLink]=”[‘pagina’]”>Celulares</a>
+    <a [routerLink]=”[‘pagina’]”>Contactanos</a>
+      <div class="spacer"></div>
+
+  </div>
+
+  <div class="content" role="main">
+
+    <!-- Highlight Card -->
+    <table>
+      <td>
+    <div class="card">
+  <table align="center" >
+    <td><img height="170" with="130" align="center" src="https://images.tigocloud.net/y9w99psrwme8/388UMFZThjif75mbTFslYI/d0d3b8db8df1b83f8cb7e1d78a2986c2/n2.png?q=70"/></td>
+    <tr></tr>
+    <span align="center">Misión</span>
+    <tr></tr>
+     <td><p>Construimos autopistas digitales que conectan, mejoran vidas y desarrollan nuestras comunidades.
+     </p></td>
+  </table>
+    </div>
+  </td>
+  <td>
+    <div class="card2">
+
+      <table align="center" >
+        <td><img height="180" with="180" align="center" src="https://images.tigocloud.net/y9w99psrwme8/2DG3VDifCcWM9OcsmeQzpO/c38782c15b4b8fc7f5c3eeb5625c192c/n1.png?q=70"/></td>
+        <tr></tr>
+        <span align="center">Visión</span>
+        <tr></tr>
+         <td><p>Tener la mejor autopista digital y ser la primera opción para nuestros mercados.
+         </p></td>
+
+
+      </table>
+        </div>
+      </td>
+      </table>
+    <!-- Resources -->
+    <h2>Nuestros modelos más famosos</h2>
+    <table>
+  <table>
+    <td>
+    <div class="card3">
+      <table>
+       <tr>
+        <img height="200" width="130" align="center" src="https://images.tigocloud.net/y9w99psrwme8/2YS2iyUjqvYIra7EasMTzT/d40f1d2dd2d7c15cb88827fc7523c971/nokia-34.jpg?q=70"/>
+  <tr>
+      <a target="_blank" rel="noopener" href="https://www.tigo.com.bo/telefonos-detalle/nokia-3_4-64gb" >
+        <span>NOKIA 3.4</span> </a>
+        <tr>
+          <p>El Nokia 3.4 es un smartphone Android con una pantalla HD+ de 6.39 pulgadas y potenciado por un procesador Snapdragon 460 de Qualcomm acompañado de 3GB o 4GB de memoria RAM con 32GB o 64GB de almacenamiento interno expandible. La cámara posterior del Nokia 3.4 es triple, con lentes de 13 MP, 5 MP y 2 MP, y que la cámara selfie es de 8 megapixels. </p>
+
+      </table>
+    </div>
+  </td>
+  <td>
+      <div class="card3">
+        <table>
+         <tr>
+
+          <img height="200" width="130" align="center" src="https://images.tigocloud.net/y9w99psrwme8/r90LSBu5WMBO6AXG56k5F/d4d28a6c946b4cfdbd5cdfe30137fd9c/Nokia-_5_1.png?q=70"/>
+    <tr>
+        <a target="_blank" rel="noopener" href="https://www.tigo.com.bo/telefonos-detalle/nokia-5_4-128gb" >
+          <span>NOKIA 5.4</span> </a>
+          <tr>
+            <p>El Nokia 5.4 es el sucesor del Nokia 5.3 lanzado a comienzos del 2020. El Nokia 5.4 llega con una pantalla de 6.39 pulgadas a resolución HD+ y potenciado por un procesador Snapdragon 662 acompañado de 4GB o 6GB de memoria RAM y 64GB o 128GB de almacenamiento interno. La cámara posterior del Nokia 5.4 es cuádruple, con lente principal de 48MP y secundarios de 5MP, 2MP y 2MP, mientras que la cámara frontal para selfies es de 16 megapixels. </p>
+
+        </table>
+      </div>
+
+    </td>
+  </table>
+  <tr>
+    <table>
+      <td>
+      <div class="card3">
+        <table>
+         <tr>
+          <img height="200" width="130" align="center" src="https://images.tigocloud.net/y9w99psrwme8/4KRkARuv6kFAVvA1M3Njua/fe53c5b55831e6b933b517601b5477e6/samsung-a12.jpg?q=70"/>
+    <tr>
+        <a target="_blank" rel="noopener" href="https://www.tigo.com.bo/telefonos-detalle/samsung-a12-64gb" >
+          <span>SAMSUNG A12</span> </a>
+          <tr>
+            <p>Dirige tu vista hacia la pantalla Infinity-V de 6.5 pulgadas de Galaxy A12 y observa todo lo que te has estado perdiendo. Gracias a la tecnología HD +, tu contenido favorito se ve nítido, brillante y claro. Captura momentos memorables con detalles más nítidos con una cámara principal de 48MP. Amplía el ángulo de visión con la cámara Ultra Gran Angular. La cámara Ultra Gran Angular de 5 MP muestra el mundo con un ángulo de visión de 123 grados, lo que otorga más perspectiva a todo lo que capturas.</p>
+
+        </table>
+      </div>
+    </td>
+    <td>
+        <div class="card3">
+          <table>
+           <tr>
+
+            <img height="200" width="130" align="center" src="https://images.tigocloud.net/y9w99psrwme8/2tOzpWlGDQmBUSmy3TTqax/ec3dbc21e5dcc37d3497b887ff42067b/samsung-a52-128gb.jpg?q=70"/>
+      <tr>
+          <a target="_blank" rel="noopener" href="https://www.tigo.com.bo/telefonos-detalle/samsung-a52-128gb" >
+            <span>SAMSUNG A52</span> </a>
+            <tr>
+              <p>Tiene un sistema operativo Android v.11, con camara frontal de 32mp y cámara cuadruple de 64/12/8/5 MP
+                Su pantalla tiene tamaño de 6.5. Su almacenamiento interno es de 128GB y la externa de 512MB
+              </p>
+
+          </table>
+        </div>
+
+      </td>
+    </table>
+  </table>
+  <router-outlet></router-outlet>
